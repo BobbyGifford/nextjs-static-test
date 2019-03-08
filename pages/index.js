@@ -1,13 +1,9 @@
-import Link from "next/link";
-import Header from "../components/header";
+import Layout from "../components/Layout";
 
-export default () => (
-  <main>
-    <Header />
-    <section>
-      <Link href="/about">
-        <a>Juice</a>
-      </Link>
-    </section>
-  </main>
+const Index = () => (
+  <Layout title="Home">
+    <p>Welcome to the home page</p>
+  </Layout>
 );
+
+export default Index;

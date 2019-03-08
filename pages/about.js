@@ -1,20 +1,29 @@
-import { Component } from 'react'
-import Link from 'next/link'
-import Header from '../components/header'
+import Layout from "../components/Layout";
+import fetch from "isomorphic-unfetch";
+import Error from "./_error";
+import { Component } from "react";
 
-class AboutPage extends Component {
+export default class About extends Component {
+  static async getInitialProps() {
+    const res = await fetch("https://api.github.com/users/reedbarger");
+    const statusCode = res.status > 200 ? res.status : false;
+    const data = await res.json();
+
+    return { user: data, statusCode };
+  }
+
   render() {
+    const { user, statusCode } = this.props;
+
+    if (statusCode) {
+      return <Error statusCode={statusCode} />;
+    }
+
     return (
-      <main>
-        <Header />
-        <section>
-          <Link href="/">
-            <a>Go to Home</a>
-          </Link>
-        </section>
-      </main>
-    )
+      <Layout title="About">
+        <p>{user.name}</p>
+        <img src={user.avatar_url} alt="Reed" height="200px" />
+      </Layout>
+    );
   }
 }
-
-export default AboutPage
