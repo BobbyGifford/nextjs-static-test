@@ -14,7 +14,7 @@ Router.onRouteChangeError = () => NProgress.done();
 export default ({ children, title }) => (
   <div className="root">
     <Head>
-      <title>NextPortfolio</title>
+      <title>{title}</title>
     </Head>
     <header>
       <Link href="/">
