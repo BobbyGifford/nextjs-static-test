@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "nextjs-static-test",
+  "name": "test-site",
   "builds": [
     {
       "src": "package.json",
